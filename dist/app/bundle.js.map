@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://react-test/./src/app/index.js"],"names":["console","log"],"mappings":"mBAAAA,QAAQC,IAAI,iC","file":"bundle.js","sourcesContent":["console.log(' HHHHHHello from app/indexjs')"],"sourceRoot":""}
