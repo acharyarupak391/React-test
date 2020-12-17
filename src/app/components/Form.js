@@ -9,7 +9,10 @@ export class Form extends React.Component {
     
     this.state = {
       email: "",
-      password: ""
+      password: "",
+      validationWarning: "",
+      warningLabelClass: "",
+      inputField: undefined
     }
   }
 
@@ -19,9 +22,34 @@ export class Form extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
+    // console.log(this.state.inputField.checkValidity())
     let email = this.state.email;
     let password = this.state.password;
-    if(email.match(/^\s*$/) || password.match(/^\s*$/)) return;
+
+    // Empty values validation
+    if(email.match(/^\s*$/) || password.match(/^\s*$/)) {
+      return this.setState({
+        validationWarning: "Empty values not accepted",
+        warningLabelClass: "warningOn"
+      })
+    }
+
+    if(this.state.inputField.checkValidity() == false) {
+      return this.setState({
+        validationWarning: "Incorrect email format!",
+        warningLabelClass: "warningOn"
+      })
+    }
+
+    // Password length validation
+    if(6 > password.length > 20) {
+      return this.setState({
+        validationWarning: "Passwords must be atleast 6 characters and atmost 20 characters",
+        warningLabelClass: "warningOn"
+      })
+    }
+
+
 
     axios.post("https://api.test.01cloud.dev/user/login", 
       {
@@ -34,13 +62,16 @@ export class Form extends React.Component {
   }
 
   onFocusChange(e) {
-    e.target.type == "email" ? this.setState({email: e.target.value}) : this.setState({password: e.target.value})
+    e.target.type == "email" ? this.setState({email: e.target.value}) : this.setState({password: e.target.value});
+    this.setState({validationWarning: "", warningLabelClass: ""})
+    e.target.type == "email" ? this.setState({inputField: e.target}) : null;
   }
 
   render() {
     // console.log(props)
     return(
       <form name="my-form">
+        <span className={this.state.warningLabelClass}>{this.state.validationWarning}</span><br/>
         <label 
           id="email-label" 
           onClick={e => this.onLabelClick(e)}
