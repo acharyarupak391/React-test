@@ -65,11 +65,17 @@ html, body {
 
 .warningOn {
   display: block;
-  background-color: rgba(255, 0, 0, 0.459);
+  background-color: rgb(253, 146, 146);
   width: 90%;
   margin: 0 auto;
   text-align: center;
   border-radius: 4px;
   padding: 3px;
+  color: rgb(99, 0, 0);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.success {
+  background-color: rgb(148, 255, 98);
+  color: rgb(11, 65, 0);
 }
