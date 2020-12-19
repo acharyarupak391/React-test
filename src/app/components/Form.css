@@ -12,7 +12,7 @@ html, body {
   border: 2px solid black;
   border-radius: 4px;
   padding: 10px;
-  width: 450px;
+  width: 40%;
   margin: 150px auto;
   background-color: turquoise;
   position: relative;
@@ -24,7 +24,7 @@ html, body {
   border-bottom: 1px solid black;
   outline: none;
   transform-origin: left;
-  width: 250px;
+  width: 60%;
   height: 25px;
   font-size: 18px;
 }
@@ -40,6 +40,8 @@ html, body {
   outline: none;
   cursor: pointer;
   box-sizing: border-box;
+  font-size: 18px;
+  padding: 5px 10px;
 }
 
 .form-div>form>button:focus, .form-div>form>button:hover {

@@ -27,7 +27,7 @@ const initialState = {
 }
 
 function formReducer(state, action) {
-  console.log('state: ', state, 'action: ', action)
+  // console.log('state: ', state, 'action: ', action)
   switch(action.type) {
     case RESET_LABEL:
       return {
@@ -109,6 +109,9 @@ function formReducer(state, action) {
         warningLabelClass: state.warningLabelClass,
         inputField: action.payload.event.target
       }
+
+    default:
+      return state;
       
   }
 }

@@ -44,8 +44,6 @@ class Form extends React.Component {
     // console.log(this.state.inputField.checkValidity())
     // this.setState({validationWarning: "", warningLabelClass: ""})
 
-    console.log(this.props);
-
     let email = this.props.email;
     let password = this.props.password;
 
@@ -56,23 +54,26 @@ class Form extends React.Component {
       //   warningLabelClass: "warningOn"
       // })
       this.props.empty_value_label();
+      return;
     }
 
-    if(this.props.inputField.checkValidity() == false) {
+    if(this.props.inputField && this.props.inputField.checkValidity() == false) {
       // return this.setState({
       //   validationWarning: "Invalid email format!",
       //   warningLabelClass: "warningOn"
       // })
       this.props.invalid_email_label();
+      return;
     }
 
     // Password length validation
-    if(6 > password.length > 20) {
+    if(password.length < 6 || password.length > 20) {
       // return this.setState({
       //   validationWarning: "Passwords must be atleast 6 characters and atmost 20 characters",
       //   warningLabelClass: "warningOn"
       // })
       this.props.password_length_label();
+      return;
     }
 
 
@@ -109,7 +110,7 @@ class Form extends React.Component {
 
     e.target.type == "email" ? this.props.save_email_input(e.target) : this.props.save_password_input(e.target);
     this.props.reset_label();
-    e.target.type == "email" ? this.props.save_email_field(e) : null;
+    (!this.props.inputField && e.target.type == "email") ? this.props.save_email_field(e) : null;
   }
 
   render() {
@@ -127,7 +128,6 @@ class Form extends React.Component {
 }
 
 function mapStateToProps(state) {
-  console.log('msp state: ', state)
   return {
     email: state.email,
     password: state.password,
